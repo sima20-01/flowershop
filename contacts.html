@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - floraexpress</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"&gt;
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap&quot; rel="stylesheet">
+    <style>
+        .contacts-hero {
+            background: linear-gradient(rgba(85, 197, 122, 0.9), rgba(255, 107, 139, 0.9));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-right: 15px;
+            min-width: 30px;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .map-container {
+            margin-top: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .map-placeholder {
+            height: 400px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-color);
+        }
+        
+        .faq-section {
+            margin-top: 60px;
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 0 20px 20px;
+            max-height: 200px;
+        }
+        
+        .faq-toggle {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-spa"></i>
+                        <span>floraexpress</span>
+
+
+</a>
+                </div>
+                
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="contacts.html" class="active">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="auth.html" class="auth-btn-header" id="authBtnHeader" style="margin-right: 15px; color: var(--primary-color); text-decoration: none;">
+    <i class="fas fa-user"></i>
+    <span>Войти</span>
+</a>
+
+<div id="userInfo" class="user-info" style="display: none;">
+    <div class="user-avatar" id="userAvatar">U</div>
+    <span class="user-name" id="userName">Пользователь</span>
+    <button class="logout-btn" onclick="logout()">Выйти</button>
+</div>
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Герой контактов -->
+    <section class="contacts-hero">
+        <div class="container">
+            <h1>Свяжитесь с нами</h1>
+            <p>Мы всегда рады помочь и ответить на ваши вопросы</p>
+        </div>
+    </section>
+
+    <!-- Контактная информация и форма -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Контактная информация -->
+                <div class="contact-info">
+                    <h2 class="section-title">Контактная информация</h2>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Адрес</h3>
+                            <p>г. Новочеркасск, ул. Московская, 15</p>
+                            <p>Вход со двора, 2 этаж</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Телефон</h3>
+                            <p>+7 (999) 123-45-67</p>
+                            <p>+7 (495) 765-43-21</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@floraexpress.ru</p>
+                            <p>orders@floraexpress.ru</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3>Часы работы</h3>
+                            <p>Пн-Пт: 9:00 - 21:00</p>
+                            <p>Сб-Вс: 10:00 - 20:00</p>
+                            <p>Доставка: круглосуточно</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links" style="margin-top: 30px; justify-content: flex-start;">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Форма обратной связи -->
+                <div class="contact-form">
+                    <h2 class="section-title">Напишите нам</h2>
+
+
+<form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Имя *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Телефон *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Тема обращения</label>
+                            <select id="subject" name="subject">
+                                <option value="order">Заказ букета</option>
+                                <option value="delivery">Доставка</option>
+                                <option value="question">Вопрос</option>
+                                <option value="cooperation">Сотрудничество</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Сообщение *</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Карта -->
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <div>
+                        <i class="fas fa-map-marked-alt" style="font-size: 48px; margin-bottom: 20px;"></i>
+                        <p>Здесь будет карта с нашим местоположением</p>
+                        <p>г. Новочеркасск, ул. Московская, 15</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ -->
+            <div class="faq-section">
+                <h2 class="section-title">Часто задаваемые вопросы</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Как происходит доставка цветов?</span>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Доставка осуществляется курьером в течение 2 часов по Москве в пределах МКАД. За МКАД - от 3 часов. Мы используем специальные контейнеры для сохранения свежести цветов.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Можно ли заказать цветы заранее?</span>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Да, вы можете оформить предзаказ на любую дату. Мы рекомендуем заказывать свадебные букеты за 2 недели, а праздничные букеты - за 3-5 дней.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Какие способы оплаты вы принимаете?</span>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Мы принимаем наличные при получении, банковские карты (Visa, MasterCard, Мир), а также онлайн-оплату через
+
+
+Сбербанк Онлайн, Тинькофф и Яндекс.Деньги.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Что делать, если цветы завяли раньше времени?</span>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Мы гарантируем свежесть цветов в течение 7 дней. Если цветы завяли раньше - свяжитесь с нами, и мы решим проблему: заменим букет или вернем деньги.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Можно ли составить индивидуальный букет?</span>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Конечно! Наши флористы помогут составить уникальный букет по вашему желанию. Приходите в магазин или свяжитесь с нами по телефону для консультации.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FlowerShop</h3>
+                    <p>Дарим эмоции через цветы с 2010 года</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Меню</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +7 (999) 123-45-67</li>
+                        <li><i class="fas fa-envelope"></i> info@flowershop.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Цветочная, 15</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Часы работы</h4>
+                    <ul>
+                        <li>Пн-Пт: 9:00 - 21:00</li>
+                        <li>Сб-Вс: 10:00 - 20:00</li>
+                        <li>Доставка: круглосуточно</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 floraexpress. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // FAQ аккордеон
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const answer = item.querySelector('.faq-answer');
+                
+                // Закрываем все остальные
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.faq-answer').classList.remove('active');
+                    }
+                });
+
+
+// Переключаем текущий
+                item.classList.toggle('active');
+                answer.classList.toggle('active');
+            });
+        });
+        
+        // Обработка формы
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Сбор данных формы
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+            
+            // В реальном проекте здесь был бы AJAX запрос на сервер
+            console.log('Форма отправлена:', formData);
+            
+            // Показываем уведомление
+            alert('Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.');
+            
+            // Очищаем форму
+            this.reset();
+        });
+    </script>
+</body>
+</html>

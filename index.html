@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>floraexpress - Магазин цветов</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-spa"></i>
+                        <span>floraexpress</span>
+                    </a>
+                </div>
+                
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="active">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="auth.html" class="auth-btn-header" id="authBtnHeader" style="margin-right: 15px; color: var(--primary-color); text-decoration: none;">
+    <i class="fas fa-user"></i>
+    <span>Войти</span>
+</a>
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Цветы, которые говорят за вас</h1>
+                <p>Свежие букеты на любой вкус и случай. Доставка по городу в течение 2 часов.</p>
+                <a href="catalog.html" class="btn btn-primary">Выбрать букет</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Популярные товары -->
+    <section class="featured section-padding">
+        <div class="container">
+            <h2 class="section-title">Популярные букеты</h2>
+            <div class="flowers-grid">
+                <div class="flower-card">
+                    <div class="flower-image">
+                        <img src="https://cdn1.ozone.ru/s3/multimedia-j/6471091987.jpg" alt="Букет роз">
+                        <span class="flower-badge">Хит продаж</span>
+                    </div>
+                    <div class="flower-info">
+                        <h3>Красные розы</h3>
+                        <p>Классический букет из 25 алых роз</p>
+                        <div class="flower-price">
+                            <span class="price">3 500 ₽</span>
+                            <button class="btn-add-to-cart" data-id="1">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flower-card">
+                    <div class="flower-image">
+                        <img src="https://cdn1.ozone.ru/s3/multimedia-l/6246871461.jpg" alt="Букет тюльпанов">
+                    </div>
+                    <div class="flower-info">
+                        <h3>Тюльпаны весенние</h3>
+                        <p>Яркий букет из 15 разноцветных тюльпанов</p>
+                        <div class="flower-price">
+                            <span class="price">2 800 ₽</span>
+                            <button class="btn-add-to-cart" data-id="2">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flower-card">
+                    <div class="flower-image">
+                        <img src="https://basket-05.wbbasket.ru/vol832/part83269/83269094/images/big/1.webp" alt="Орхидеи">
+                    </div>
+                    <div class="flower-info">
+                        <h3>Белая орхидея</h3>
+                        <p>Элегантное растение в горшке</p>
+                        <div class="flower-price">
+                            <span class="price">4 200 ₽</span>
+                            <button class="btn-add-to-cart" data-id="3">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flower-card">
+                    <div class="flower-image">
+                        <img src="https://ir.ozone.ru/s3/multimedia-1-x/7498033197.jpg" alt="Свадебный букет">
+                        <span class="flower-badge">Новинка</span>
+                    </div>
+                    <div class="flower-info">
+                        <h3>Свадебный букет</h3>
+                        <p>Нежный букет из пионов и эустомы</p>
+                        <div class="flower-price">
+                            <span class="price">5 900 ₽</span>
+                            <button class="btn-add-to-cart" data-id="4">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="benefits section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <div class="benefits-grid">
+                <div class="benefit">
+                    <i class="fas fa-truck"></i>
+                    <h3>Быстрая доставка</h3>
+                    <p>Доставка в течение 2 часов по всему городу</p>
+                </div>
+                <div class="benefit">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Свежие цветы</h3>
+                    <p>Только свежесрезанные цветы от проверенных поставщиков</p>
+                </div>
+                <div class="benefit">
+                    <i class="fas fa-gift"></i>
+                    <h3>Подарочная упаковка</h3>
+                    <p>Бесплатная праздничная упаковка для всех букетов</p>
+                </div>
+                <div class="benefit">
+                    <i class="fas fa-headset"></i>
+                    <h3>Поддержка 24/7</h3>
+                    <p>Консультация флориста и помощь в выборе</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>floraexpress</h3>
+                    <p>Дарим эмоции через цветы с 2010 года</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Меню</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +7 (999) 123-45-67</li>
+                        <li><i class="fas fa-envelope"></i> info@floraexpress.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> г. Новочеркасск, ул. Московская, 15</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Часы работы</h4>
+                    <ul>
+                        <li>Пн-Пт: 9:00 - 21:00</li>
+                        <li>Сб-Вс: 10:00 - 20:00</li>
+                        <li>Доставка: круглосуточно</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 floraexpress. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

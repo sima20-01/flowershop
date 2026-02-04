@@ -1,0 +1,507 @@
+/* Сброс и базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #ff6b8b;
+    --secondary-color: #7ed56f;
+    --accent-color: #55c57a;
+    --dark-color: #333;
+    --light-color: #f8f9fa;
+    --gray-color: #777;
+    --border-color: #eee;
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--dark-color);
+    background-color: #fff;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Шапка */
+.header {
+    background-color: #fff;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+}
+
+.logo i {
+    font-size: 28px;
+    margin-right: 10px;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: var(--dark-color);
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.nav-list a:hover,
+.nav-list a.active {
+    color: var(--primary-color);
+    background-color: rgba(255, 107, 139, 0.1);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-btn {
+    position: relative;
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: var(--dark-color);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--dark-color);
+}
+
+/* Герой секция */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 120px 0;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+}
+
+/* Кнопки */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #ff4b6e;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 107, 139, 0.3);
+}
+
+/* Секции */
+.section-padding {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: var(--dark-color);
+}
+
+.bg-light {
+    background-color: var(--light-color);
+}
+
+/* Карточки цветов */
+.flowers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.flower-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.flower-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.flower-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.flower-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.flower-card:hover .flower-image img {
+    transform: scale(1.1);
+}
+
+.flower-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.flower-info {
+    padding: 20px;
+}
+
+.flower-info h3 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.flower-info p {
+    color: var(--gray-color);
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.flower-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.btn-add-to-cart {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+}
+
+.btn-add-to-cart:hover {
+    background-color: #4bbf6a;
+}
+
+/* Преимущества */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    text-align: center;
+}
+
+.benefit {
+    padding: 30px 20px;
+}
+
+.benefit i {
+    font-size: 48px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.benefit h3 {
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.benefit p {
+    color: var(--gray-color);
+}
+
+/* Футер */
+.footer {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 60px 0 30px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    color: white;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.footer-section h3 {
+    font-size: 24px;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: #ddd;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-section a:hover {
+    color: var(--primary-color);
+}
+
+.footer-section i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* Адаптивность */
+
+/* Исправления для медиа-запросов */
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    .nav {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        background-color: white;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+    }
+    
+    .nav.active {
+        left: 0;
+    }
+    
+    .nav-list {
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .section-padding {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        padding: 80px 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .flowers-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* Стили для авторизации */
+.auth-btn-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.auth-btn-header:hover {
+    background-color: rgba(255, 107, 139, 0.1);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.user-name {
+    font-weight: 500;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: var(--gray-color);
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    color: var(--primary-color);
+}

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас - floraexpress</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        .about-hero {
+            background: linear-gradient(rgba(255, 107, 139, 0.9), rgba(126, 213, 111, 0.9));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .team-member {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .timeline-item {
+            padding: 20px;
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .timeline-year {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-spa"></i>
+                        <span>floraexpress</span>
+                    </a>
+                </div>
+                
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="about.html" class="active">О нас</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="auth.html" class="auth-btn-header" id="authBtnHeader" style="margin-right: 15px; color: var(--primary-color); text-decoration: none;">
+    <i class="fas fa-user"></i>
+    <span>Войти</span>
+</a>
+
+<div id="userInfo" class="user-info" style="display: none;">
+    <div class="user-avatar" id="userAvatar">U</div>
+    <span class="user-name" id="userName">Пользователь</span>
+    <button class="logout-btn" onclick="logout()">Выйти</button>
+</div>
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Герой "О нас" -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>Наша история</h1>
+            <p>Более 10 лет дарим красоту и радость</p>
+        </div>
+    </section>
+
+    <!-- Основной контент -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">floraexpress - больше чем просто цветы</h2>
+                <p>Мы начали свой путь в 2010 году с небольшого цветочного магазина в центре Москвы. Сегодня мы - крупнейшая сеть цветочных магазинов с доставкой по всему городу.</p>
+                
+                <p>Наша миссия - дарить людям эмоции через цветы. Мы верим, что каждый букет должен быть уникальным и передавать именно те чувства, которые вы хотите выразить.</p>
+            </div>
+
+            <!-- Статистика -->
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-text">Лет на рынке</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50,000+</div>
+                    <div class="stat-text">Довольных клиентов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-text">Видов цветов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-text">Доставка</div>
+                </div>
+            </div>
+
+            <!-- История -->
+            <h2 class="section-title">Наш путь</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2010</div>
+                    <h3>Начало пути</h3>
+                    <p>Открытие первого магазина на Московской улице. Все начиналось с маленького павильона и большой мечты.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2013</div>
+                    <h3>Первая доставка</h3>
+                    <p>Запустили службу доставки. Теперь цветы можно было заказать по телефону с доставкой на дом.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2016</div>
+                    <h3>Выход в онлайн</h3>
+                    <p>Запустили первый сайт и начали принимать заказы через интернет.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2020</div>
+                    <h3>Новый формат</h3>
+                    <p>Открыли флористическую студию, где проводим мастер-классы и создаем эксклюзивные букеты.</p>
+                </div>
+            </div>
+
+            <!-- Команда -->
+            <h2 class="section-title">Наша команда</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://img.freepik.com/free-photo/portrait-blonde-young-female-florist-holding-bouquet-hand-making-victory-gesture_23-2148049430.jpg?semt=ais_incoming&w=740&q=80" alt="Анна">
+                    <h3>Анна Петрова</h3>
+                    <p>Главный флорист</p>
+                    <p>Стаж работы 12 лет. Специалист по свадебным букетам.</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://storage.gra.cloud.ovh.net/v1/AUTH_1db17c9a9c714ce39f508d240f11d920/octopus-bucket/aeeba48c-8129-4c5f-9dd7-5ff528abf2fe/5a15d018-5d22-4a21-90c2-13298fe38561.jpg" alt="Дмитрий">
+                    <h3>Дмитрий Смирнов</h3>
+                    <p>Менеджер по закупкам</p>
+                    <p>Обеспечивает свежесть и качество всех цветов.</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://avatars.mds.yandex.net/i?id=e6927390046df42dae8fb7440c0f9b6b_l-10268218-images-thumbs&n=13" alt="Екатерина">
+                    <h3>Екатерина Иванова</h3>
+                    <p>Дизайнер упаковки</p>
+                    <p>Создает уникальную подарочную упаковку для каждого букета.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FlowerShop</h3>
+                    <p>Дарим эмоции через цветы с 2010 года</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Меню</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +7 (999) 123-45-67</li>
+                        <li><i class="fas fa-envelope"></i> info@flowershop.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Цветочная, 15</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Часы работы</h4>
+                    <ul>
+                        <li>Пн-Пт: 9:00 - 21:00</li>
+                        <li>Сб-Вс: 10:00 - 20:00</li>
+                        <li>Доставка: круглосуточно</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 FlowerShop. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Инициализация корзины
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            
+            // Инициализация меню
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('.nav');
+            
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+        });
+
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCount.textContent = totalItems;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина - floraexpress</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        .cart-hero {
+            background: linear-gradient(rgba(255, 107, 139, 0.9), rgba(126, 213, 111, 0.9));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cart-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .cart-items {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 2fr 1fr 1fr auto;
+            gap: 20px;
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+        }
+        
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--border-color);
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            padding: 5px;
+            border-radius: 5px;
+        }
+        
+        .remove-btn {
+            background: none;
+            border: none;
+            color: var(--gray-color);
+            cursor: pointer;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .remove-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        .cart-summary {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            align-self: start;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .summary-total {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-cart i {
+            font-size: 80px;
+            color: var(--border-color);
+            margin-bottom: 20px;
+        }
+        
+        .cart-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .continue-shopping {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+        
+        .continue-shopping:hover {
+            background-color: #e9ecef;
+        }
+
+        /* Медиа-запросы */
+        @media (max-width: 768px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .cart-item-image {
+                justify-self: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-spa"></i>
+                        <span>floraexpress</span>
+                    </a>
+                </div>
+                
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="auth.html" class="auth-btn-header" id="authBtnHeader" style="margin-right: 15px; color: var(--primary-color); text-decoration: none;">
+    <i class="fas fa-user"></i>
+    <span>Войти</span>
+</a>
+
+<div id="userInfo" class="user-info" style="display: none;">
+    <div class="user-avatar" id="userAvatar">U</div>
+    <span class="user-name" id="userName">Пользователь</span>
+    <button class="logout-btn" onclick="logout()">Выйти</button>
+</div>
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Герой корзины -->
+    <section class="cart-hero">
+        <div class="container">
+            <h1>Ваша корзина</h1>
+            <p>Проверьте заказ перед оформлением</p>
+        </div>
+    </section>
+
+    <!-- Корзина -->
+    <section class="section-padding">
+        <div class="container">
+            <div id="cartContent">
+                <!-- Содержимое корзины будет загружено через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>floraexpress</h3>
+                    <p>Дарим эмоции через цветы с 2010 года</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Меню</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +7 (999) 123-45-67</li>
+                        <li><i class="fas fa-envelope"></i> info@flowershop.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> г. Новочеркасск, ул. Московская, 15</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Часы работы</h4>
+                    <ul>
+                        <li>Пн-Пт: 9:00 - 21:00</li>
+                        <li>Сб-Вс: 10:00 - 20:00</li>
+                        <li>Доставка: круглосуточно</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 floraexpress. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Данные товаров для отображения в корзине
+        const productsData = {
+           1: { name: "Красные розы", price: 3500, image: "https://cdn1.ozone.ru/s3/multimedia-j/6471091987.jpg" },
+            2: { name: "Тюльпаны весенние", price: 2800, image: "https://cdn1.ozone.ru/s3/multimedia-l/6246871461.jpg" },
+            3: { name: "Белая орхидея", price: 4200, image: "https://basket-05.wbbasket.ru/vol832/part83269/83269094/images/big/1.webp" },
+            4: { name: "Свадебный букет", price: 5900, image: "https://ir.ozone.ru/s3/multimedia-1-x/7498033197.jpg" },
+            5: { name: "Розовые розы", price: 3200, image: "https://ir.ozone.ru/s3/multimedia-l/6526486989.jpg" },
+            6: { name: "Полевые цветы", price: 2500, image: "https://avatars.mds.yandex.net/i?id=2a0000019b69eea04856c6d649ece96e1121-18759252-yarec&n=13" },
+            7: { name: "Фиолетовые тюльпаны", price: 3100, image: "https://main-cdn.sbermegamarket.ru/big1/hlr-system/680/809/098/418/181/6/100067669247b0.jpg" },
+            8: { name: "Фаленопсис", price: 3800, image: "https://ir.ozone.ru/s3/multimedia-1-1/7238708461.jpg" }
+        };
+
+        // Функция отображения корзины
+        function renderCart() {
+            const cartContent = document.getElementById('cartContent');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            if (cart.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h2>Ваша корзина пуста</h2>
+                        <p>Добавьте товары из каталога, чтобы продолжить покупки</p>
+                        <div class="cart-actions">
+                            <a href="catalog.html" class="btn btn-primary">Перейти в каталог</a>
+                            <a href="index.html" class="btn continue-shopping">На главную</a>
+                        </div>
+                    </div>
+                `;
+                updateCartCount();
+                return;
+            }
+            
+            let total = 0;
+            let itemsHTML = '';
+            
+            cart.forEach((item, index) => {
+                const product = productsData[item.id];
+                if (!product) return;
+                
+                const itemTotal = product.price * item.quantity;
+                total += itemTotal;
+                
+                itemsHTML += `
+                    <div class="cart-item" data-index="${index}">
+                        <img src="${product.image}" alt="${product.name}" class="cart-item-image">
+                        <div>
+                            <h3>${product.name}</h3>
+                            <p>${product.price.toLocaleString()} ₽</p>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, ${item.quantity - 1})">-</button>
+                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" 
+                                   onchange="updateQuantity(${index}, this.value)">
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, ${item.quantity + 1})">+</button>
+                        </div>
+                        <div class="item-total">${itemTotal.toLocaleString()} ₽</div>
+                        <button class="remove-btn" onclick="removeFromCart(${index})">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            
+            cartContent.innerHTML = `
+                <div class="cart-container">
+                    <div class="cart-items">
+                        ${itemsHTML}
+                    </div>
+                    
+                    <div class="cart-summary">
+                        <h2>Итого</h2>
+                        <div class="summary-item">
+                            <span>Товары (${cart.length})</span>
+                            <span>${total.toLocaleString()} ₽</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Доставка</span>
+                            <span>Бесплатно</span>
+                        </div>
+                        <div class="summary-item summary-total">
+                            <span>Общая сумма</span>
+                            <span>${total.toLocaleString()} ₽</span>
+                        </div>
+                        
+                        <button class="btn btn-primary checkout-btn" onclick="checkout()">
+                            Оформить заказ
+                        </button>
+                        
+                        <div class="cart-actions" style="margin-top: 20px;">
+                            <a href="catalog.html" class="btn continue-shopping" style="width: 100%;">
+                                Продолжить покупки
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            updateCartCount();
+        }
+
+        // Обновление количества товара
+        function updateQuantity(index, newQuantity) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            if (newQuantity < 1) {
+                removeFromCart(index);
+                return;
+            }
+            
+            cart[index].quantity = parseInt(newQuantity);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        // Удаление товара из корзины
+        function removeFromCart(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        // Оформление заказа
+        function checkout() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            if (cart.length === 0) {
+                alert('Корзина пуста!');
+                return;
+            }
+            
+            alert('Заказ оформлен! С вами свяжется менеджер для подтверждения.');
+            
+            // Очищаем корзину
+            localStorage.removeItem('cart');
+            renderCart();
+        }
+
+        // Обновление счетчика в шапке
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCount.textContent = totalItems;
+            }
+        }
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCart();
+            
+            // Инициализация меню
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('.nav');
+            
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
